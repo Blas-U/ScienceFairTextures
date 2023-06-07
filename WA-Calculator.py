@@ -60,12 +60,18 @@ def subSampleWA(numRun, fraction, data, dx):   #
     popavgAvg = np.average(outAverage) #Finding the average of the averages
     print("popavgAvg", popavgAvg)
 
+#PARAMETERS
+Repeat = 100
+SubPercent = .50
+
+
 pairs = []
 out50a=[] 
 out50s=[]
 
+
 #read file, open data.
-with open("NewData.csv") as file:
+with open("NewData.csv", "r") as file:
     data = file.readlines()
 
     for i in range(1,len(data)):
@@ -75,16 +81,20 @@ with open("NewData.csv") as file:
         pairs.append(f'{d1},{d2}')
         out50a.append(d1)
         out50s.append(d2)
-    print(pairs)
+    # print(pairs)
         # print(i,d1, d2)
 # print(out50a, out50s)
-
-n = int(len(pairs)*.5) #50% of the TextureData
-d = np.random.choice(pairs, n, False) 
-sumA = 0 
-sumBA = 0
-for i in range(len(d)):
-    sumA += float(d[i].split(',')[1])
-    sumBA += float(d[i].split(',')[1]) * float(d[i].split(',')[0])
-    Wave = sumBA/sumA
-print(sumA, sumBA, Wave)
+with open("WAdata.csv", "w") as file: #creating a new file for writing "w"
+    file.write('sumA,sumBA\n') #first line 
+    for i in range(Repeat):
+        n = int(len(pairs)*SubPercent) #50% of the TextureData
+        d = np.random.choice(pairs, n, False) 
+        sumA = 0 
+        sumBA = 0
+        for i in range(len(d)):
+            sumA += float(d[i].split(',')[1]) #Sum of the area
+            sumBA += float(d[i].split(',')[1]) * float(d[i].split(',')[0]) #Sum of the pairs of d34s times the area 
+        Wave = sumBA/sumA #Weighted Average
+        file.write(f'{sumA},{sumBA}\n') #Putting data into the file with line seperation with \n
+print('sumA',sumA,'sumBA', sumBA)
+print('Weighted Average', Wave)
