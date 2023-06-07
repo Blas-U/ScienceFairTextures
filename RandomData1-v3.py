@@ -1,18 +1,29 @@
+<<<<<<< HEAD
 #Example Program
+=======
+>>>>>>> f17d5e9912eeaaecf2e01498b587b3377646e752
 import numpy as np #Importing a module for doing math calculations in python
 
 def subSample(numRun, fraction, fileName, dx):   #
     '''numRun (integer) - The number of times a sub-populatoin is created.
        fraction (Float) - The percentage of data (As a fraction) being taken in each sub-population.
        fileName (String) - Name of the input file with the data in one value per line.
+<<<<<<< HEAD
        dx (Float)- The amount of spread within averages.'''
+=======
+       dx (Float)- The amount of spred within averages.'''
+>>>>>>> f17d5e9912eeaaecf2e01498b587b3377646e752
     #Read file, open data.
     with open(fileName) as file:
         data = file.readlines()
         for i in range(len(data)):
             data[i] = float(data[i]) #Change from string to floating point numbers.
     numdata = len(data) #Finding the number of samples.
+<<<<<<< HEAD
     popavg = np.average(data) #Finding the average of the full population of samples.
+=======
+    popavg = np.average(data) #Finding the average of the full pupulation of samples.
+>>>>>>> f17d5e9912eeaaecf2e01498b587b3377646e752
     popstdev = np.std(data) #Finding the standard deviation of the full population of samples.
     print("popavg =",popavg)
     print("popstdev =",popstdev)
@@ -39,6 +50,7 @@ def subSample(numRun, fraction, fileName, dx):   #
     print("popavgAvg", popavgAvg)
     print()
 
+<<<<<<< HEAD
 subSample(1000000, .5, "TextureData.csv", .25)
 subSample(1000000, .75, "TextureData.csv", .25)
 
@@ -51,3 +63,11 @@ subSample(1000000, .75, "TextureData.csv", .25)
 #1000=.5 - 75% = 0.818,0.81,0.812 - 50% = 0.54,0.567,0.53
 #100=0.1 - 75% = 0.8,0.87,0.82 - 50% = 0.55,0.56,0.54
 #10=.001 - 75% = 0.7,0.8,0.9 - 50% = 0.2,0.2,0.9
+=======
+
+
+
+
+subSample(100000, .5, "TextureData.csv", .25)
+subSample(100000, .75, "TextureData.csv", .25)
+>>>>>>> f17d5e9912eeaaecf2e01498b587b3377646e752

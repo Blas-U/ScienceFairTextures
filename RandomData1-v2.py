@@ -22,17 +22,17 @@ def subSample(numRun, fraction, fileName, dx):
     for i in range(numRun):
         n = int(numdata*fraction) #50% of the TextureData
         d = np.random.choice(data, n, False)
-        print(d)
-        print(n)
+        #print(d)
+        #print(n)
         sampleAvg = np.average(d)
         samplestdev = np.std(d)
         out50a.append(sampleAvg)
         out50s.append(samplestdev)
-        print(f"{n}, {sampleAvg}, {samplestdev}")
+        #print(f"{n}, {sampleAvg}, {samplestdev}")
         if ((sampleAvg >= -40 - dx) and (sampleAvg <= -40 + dx)):
             nbetween += 1
     percentBet = nbetween/numRun
-    print(percentBet)
+    print(f'Percentage = {percentBet}')
     #print(out50a)
     pop50avgAvg = np.average(out50a)
     print("pop50avgAvg", pop50avgAvg)
@@ -42,5 +42,5 @@ def subSample(numRun, fraction, fileName, dx):
 
 
 
-subSample(10, .5, "TextureData.csv", .25)
-subSample(10, .75, "TextureData.csv", .25)
+subSample(100000, .5, "TextureData.csv", .25)
+subSample(100000, .75, "TextureData.csv", .25)
